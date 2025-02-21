@@ -7,13 +7,14 @@ import { Busqueda } from './Components/Busqueda'
 import { MostrarResultado } from './Components/MostrarResultado'
 
 function App() {
-  const [resultado, setresultado] = useState ([]);
 
+  const [resultado, setresultado] = useState([]);
+  const [error, seterror] = useState(false)
 
   return (
     <>
-      <Busqueda setresultado={setresultado}/>
-      <MostrarResultado resultado={resultado}/>
+      <Busqueda seterror={seterror} setresultado={setresultado} />
+      <MostrarResultado resultado={resultado} error={error} />
     </>
   )
 }

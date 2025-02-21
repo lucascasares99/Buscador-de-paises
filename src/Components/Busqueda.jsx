@@ -1,18 +1,31 @@
 import { useRef } from "react"
 
-export const Busqueda = ({setresultado})=>{
-    const inputref = useRef ()
+export const Busqueda = ({ setresultado, seterror }) => {
+  const inputref = useRef()
 
-    const getPaises = async (name) => {
-        let response = await fetch("https://restcountries.com/v3.1/name/"+name)
-        let data = await response.json()
-        setresultado(data)
-      }
-    return <>
+  const getPaises = async (name) => {
+    let response = await fetch("https://restcountries.com/v3.1/name/" + name)
+    let data = await response.json()
+
+    console.log(data)
+    if (data.status == 404) {
+      seterror(true)
+
+      return
+
+    }
+    seterror (false)
+    setresultado(data)
+  }
+  return <>
     <h2>Busqueda de Paises</h2>
- <input type="text" ref={inputref} onChange={()=>{getPaises(inputref.current.value)}}/>
-    
-   
-
-    </>
+    <input 
+    type="text" 
+    ref={inputref} 
+    onChange={() => { 
+      if(inputref.current.value!==""){
+        getPaises(inputref.current.value) 
+      }
+      }}/>
+  </>
 }
