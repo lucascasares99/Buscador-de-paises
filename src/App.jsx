@@ -5,6 +5,7 @@ import './App.css'
 import { Busqueda } from './Components/Busqueda'
 
 import { MostrarResultado } from './Components/MostrarResultado'
+import { Historial } from './Components/Historial'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
     <>
       <Busqueda seterror={seterror} setresultado={setresultado} />
       <MostrarResultado resultado={resultado} error={error} />
+      <Historial resultado= {resultado}/>
     </>
   )
 }
